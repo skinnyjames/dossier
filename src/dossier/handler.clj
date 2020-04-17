@@ -1,10 +1,13 @@
 (ns dossier.handler
-  (:require [compojure.core :refer :all]
+  (:require [dossier.api.users :refer :all]
+            [cheshire.core :refer :all]
+            [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/api" [] (generate-string {:hello "world"}))
+  (context "/api/user" [] (-> user-routes))
   (route/not-found "Not Found"))
 
 (def app
