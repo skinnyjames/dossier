@@ -4,5 +4,5 @@ CREATE TABLE users(
   email VARCHAR (50) UNIQUE NOT NULL,
   password_hash VARCHAR (50) NOT NULL,
   password_salt VARCHAR (50) NOT NULL,
-  created_on TIMESTAMP NOT NULL
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
