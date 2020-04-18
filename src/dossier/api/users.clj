@@ -6,5 +6,6 @@
             [cheshire.core :refer :all]))
 
 (defroutes user-routes
-  (GET "/" [] (generate-string 
-    (q/get-users (env :database-url)))))
+  (GET "/" { user :user } user)
+  (GET "/test" request {:body (str request)}))
+  
