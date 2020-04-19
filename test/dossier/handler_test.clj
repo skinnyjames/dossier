@@ -3,8 +3,7 @@
             [dossier.migrate :refer :all]
             [cheshire.core :refer :all]
             [ring.mock.request :as mock]
-            [dossier.handler :refer :all
-             ]))
+            [dossier.handler :refer :all]))
 
 (defn reset-database [f]
   (migrate)
@@ -13,6 +12,8 @@
 (defn clear-database [f]
   (clear-db)
   (f))
+
+(defn setup-user [])
 
 (use-fixtures :once reset-database)
 (use-fixtures :each clear-database)
@@ -35,4 +36,27 @@
                             (mock/json-body request-body)))]
       (is (= (:status response1) 200))
       (is (= (:status response2) 400))
-      (is (= (get (parse-string (:body response2) true) :email-address) ["Email already exists"])))))
+      (is (= (get (parse-string (:body response2) true) :email-address) ["Email already exists"]))))
+
+  (testing "fetching applications wip"
+    (let [response (app (mock/request :get "/user/1/apps"))]
+      (is (= (parse-string (:body response) true) []))))
+
+  (testing "creating application wip"
+    (let [request-body { :name "Ruby Test Suite" :framework "RubyCucumber"}
+          ; setup user
+          response (app (-> (mock/request :post "/user/1/apps")
+                          (mock/json-body request-body)))]
+      (is (= (:status response) 200))))
+
+  (testing "deleting application wip"
+    ; setup user and application
+    (let [response (app (mock/request :delete "/user/1/apps/1"))]
+      (is (= (:status response) 200))))
+
+  (testing "sending ruby cucumber report"
+    ; setup user and application
+    (let [cucumber-report {}
+          response (app (-> (mock/request :post "/reports/:api-key")
+                              (mock/json-body cucumber-report)))]
+      (is (= (:status response) 200)))))
