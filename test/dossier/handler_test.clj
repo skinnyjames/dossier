@@ -53,10 +53,8 @@
     (let [session-id (register-user-and-return-session)
           user (q/get-user-from-session q/db { :id session-id })
           url (str "/user/" (get user :id) "/apps")
-          _ (dorun (println (str "Hello" url)))
           response (app (-> (mock/request :get url)
                           (mock/cookie "session" session-id)))]
-      (dorun (println (str response)))
       (is (= (parse-string (:body response) true) [])))))
 
 (deftest applications-create
