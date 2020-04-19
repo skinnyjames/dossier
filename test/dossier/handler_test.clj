@@ -1,5 +1,6 @@
 (ns dossier.handler-test
   (:require [clojure.test :refer :all]
+            [dossier.data-test :refer :all]
             [dossier.migrate :refer :all]
             [cheshire.core :refer :all]
             [ring.mock.request :as mock]
@@ -29,14 +30,22 @@
       (is (= (:body response) "Unauthorized" ))))
 
   (testing "duplicate registration"
-    (let [request-body  {:email-address "bob@xyz.com", :password "hello" :password-confirmation "hello"}
-          response1 (app (-> (mock/request :post "/auth")
-                            (mock/json-body request-body)))
-          response2 (app (-> (mock/request :post "/auth")
-                            (mock/json-body request-body)))]
+    (let [response1 (app (-> (mock/request :post "/auth/register")
+                            (mock/json-body registration)))
+          response2 (app (-> (mock/request :post "/auth/register")
+                            (mock/json-body registration)))]
       (is (= (:status response1) 200))
       (is (= (:status response2) 400))
       (is (= (get (parse-string (:body response2) true) :email-address) ["Email already exists"]))))
+
+  (testing "logging in"
+    (let [_ (app (-> (mock/request :post "/auth/register")
+                           (mock/json-body registration)))
+          response2 (app (-> (mock/request :post "/auth/login")
+                           (mock/json-body login)))]
+      (is (= (:status response2) 200))
+      (dorun (println (str response2)))
+      (is (not (= (get-in response2 [:headers "Set-Cookie"]) nil)))))
 
   (testing "fetching applications wip"
     (let [response (app (mock/request :get "/user/1/apps"))]

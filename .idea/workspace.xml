@@ -20,11 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2753fd3-588d-4137-8f0b-e79bee397256" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dossier/middleware.clj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/dossier/data_test.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.clj" beforeDir="false" afterPath="$PROJECT_DIR$/project.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dossier/api/authentication.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dossier/api/authentication.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dossier/database/queries/queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/dossier/database/queries/queries.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dossier/handler.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dossier/handler.clj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dossier/migrate.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dossier/migrate.clj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dossier/lib/validators.clj" beforeDir="false" afterPath="$PROJECT_DIR$/src/dossier/lib/validators.clj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/dossier/handler_test.clj" beforeDir="false" afterPath="$PROJECT_DIR$/test/dossier/handler_test.clj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +39,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Clojure Namespace" />
+        <option value="Clojure Test Namespace" />
       </list>
     </option>
   </component>
@@ -56,13 +60,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cursive.last.file.extension.C\:/src/clojure/dossier/src" value="clj" />
+    <property name="cursive.last.file.extension.C\:/src/clojure/dossier/test" value="clj" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="ReplState" timestamp="1587300588326">{:repl-history {:ide [], :local [], :remote []}}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\src\clojure\dossier\src\dossier" />
+    </key>
+  </component>
+  <component name="ReplState" timestamp="1587310667024">{:repl-history {:ide [], :local [], :remote []}}</component>
   <component name="RunManager" selected="Clojure Application.test dossier">
     <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
       <setting name="replType" value="NREPL" />
@@ -193,38 +203,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="555" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587229597073" />
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1587234920358">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1587307381102">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587234920358" />
-    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1587234920358">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587307381102" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1587307381102">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587234920358" />
-    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1587234920358">
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587307381102" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1587307381102">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587234920358" />
-    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1587234920358">
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587307381102" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1587307381102">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587234920358" />
-    <state width="1493" height="305" key="GridCell.Tab.1.bottom" timestamp="1587234919289">
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587307381102" />
+    <state width="1493" height="305" key="GridCell.Tab.1.bottom" timestamp="1587307380103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="305" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587234919289" />
-    <state width="1493" height="305" key="GridCell.Tab.1.center" timestamp="1587234919289">
+    <state width="1493" height="305" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587307380103" />
+    <state width="1493" height="305" key="GridCell.Tab.1.center" timestamp="1587307380103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="305" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587234919289" />
-    <state width="1493" height="305" key="GridCell.Tab.1.left" timestamp="1587234919288">
+    <state width="1493" height="305" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587307380103" />
+    <state width="1493" height="305" key="GridCell.Tab.1.left" timestamp="1587307380103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="305" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587234919288" />
-    <state width="1493" height="305" key="GridCell.Tab.1.right" timestamp="1587234919289">
+    <state width="1493" height="305" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587307380103" />
+    <state width="1493" height="305" key="GridCell.Tab.1.right" timestamp="1587307380103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="305" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587234919289" />
+    <state width="1493" height="305" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587307380103" />
     <state x="349" y="155" key="IDE.errors.dialog" timestamp="1587222373668">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -241,25 +251,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1587218489826" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1587301032022">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1587301032022" />
     <state x="420" y="145" width="694" height="678" key="search.everywhere.popup" timestamp="1587296283386">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="420" y="145" width="694" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587296283386" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dossier/handler.clj</url>
-          <line>25</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/dossier/handler.clj</url>
-          <line>24</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

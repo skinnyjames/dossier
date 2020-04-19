@@ -23,7 +23,8 @@
   :plugins [[lein-ring "0.12.5"] [lein-environ "1.1.0"]]
   :aliases {"migrate"  ["run" "-m" "dossier.migrate/migrate"]
             "rollback" ["run" "-m" "dossier.migrate/rollback"]
-            "mcreate"  ["run" "-m" "dossier.migrate/create-migration"]}
+            "mcreate"  ["run" "-m" "dossier.migrate/create-migration"]
+            "clear"    ["run" "-m" "dossier.migrate/clear-db"]}
   :ring { :handler dossier.handler/app 
           :auto-reload? true
           :auto-refresh? true}
