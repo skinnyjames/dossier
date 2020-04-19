@@ -35,5 +35,5 @@
    :profiles/test {}
    :project/dev
       {:dependencies [[javax.servlet/servlet-api "2.5"]
-                      [ring/ring-mock "0.3.2"]]}
+                      [ring/ring-mock "0.4.0"]]}
    :project/test {}})

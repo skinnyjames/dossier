@@ -40,9 +40,9 @@
   (POST "/login" { body :body }
     (let [errors (validator/login body)]
       (if (empty? errors)
-          (set-cookie (email-to-session (get body :email-address)) "You are logged in")
+        (set-cookie (email-to-session (get body :email-address)) "You are logged in")
         { :status 400 :body errors })))
   (wrap-current-user
     (GET "/logout" { user :user }
-    (q/delete-user-session q/db { :id (get user :id) })
-    "You are logged out")))
+      (q/delete-user-session q/db { :id (get user :id) })
+      "You are logged out")))

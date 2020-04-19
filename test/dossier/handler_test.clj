@@ -1,6 +1,7 @@
 (ns dossier.handler-test
   (:require [clojure.test :refer :all]
             [dossier.data-test :refer :all]
+            [dossier.database.queries :as q]
             [dossier.migrate :refer :all]
             [cheshire.core :refer :all]
             [ring.mock.request :as mock]
@@ -36,21 +37,29 @@
                             (mock/json-body registration)))]
       (is (= (:status response1) 200))
       (is (= (:status response2) 400))
-      (is (= (get (parse-string (:body response2) true) :email-address) ["Email already exists"]))))
+      (is (= (get (parse-string (:body response2) true) :email-address) ["Email already exists"])))))
 
+(deftest login-handlers
   (testing "logging in"
     (let [_ (app (-> (mock/request :post "/auth/register")
                            (mock/json-body registration)))
           response2 (app (-> (mock/request :post "/auth/login")
                            (mock/json-body login)))]
       (is (= (:status response2) 200))
-      (dorun (println (str response2)))
-      (is (not (= (get-in response2 [:headers "Set-Cookie"]) nil)))))
+      (is (not (= (get-in response2 [:headers "Set-Cookie"]) nil))))))
 
+(deftest applications-route
   (testing "fetching applications wip"
-    (let [response (app (mock/request :get "/user/1/apps"))]
-      (is (= (parse-string (:body response) true) []))))
+    (let [session-id (register-user-and-return-session)
+          user (q/get-user-from-session q/db { :id session-id })
+          url (str "/user/" (get user :id) "/apps")
+          _ (dorun (println (str "Hello" url)))
+          response (app (-> (mock/request :get url)
+                          (mock/cookie "session" session-id)))]
+      (dorun (println (str response)))
+      (is (= (parse-string (:body response) true) [])))))
 
+(deftest applications-create
   (testing "creating application wip"
     (let [request-body { :name "Ruby Test Suite" :framework "RubyCucumber"}
           ; setup user
