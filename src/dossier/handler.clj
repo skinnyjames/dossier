@@ -13,6 +13,8 @@
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
+(defn user-does-not-exist [id]
+  (empty? (q/get-user-from-session q/db {:id id})))
 
 (defn add-user-to-request [request, id]
   (assoc request :user (q/get-user-from-session q/db {:id id } {:quoting :ansi})))
@@ -20,7 +22,7 @@
 (defn wrap-current-user [handler]
   (fn [request]
     (let [id (get-in request [:cookies "session" :value])]
-      (if (nil? id)
+      (if (or (nil? id) (user-does-not-exist id))
         (-> { :status 401 :body "Unauthorized" })
         (handler (add-user-to-request request id))))))
 

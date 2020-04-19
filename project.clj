@@ -4,7 +4,7 @@
   :min-lein-version "2.0.0"
   :main dossier.handler
   :source-paths ["src"]
-  :jvm-opts ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5010"]
+  ;:jvm-opts ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5010"]
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [compojure "1.6.1"]
                  [buddy "2.0.0"]

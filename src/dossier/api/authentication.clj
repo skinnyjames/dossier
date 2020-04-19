@@ -1,6 +1,6 @@
 (ns dossier.api.authentication
   (:require [dossier.database.queries :as q]
-            [dossier.lib.validators :as v]
+            [dossier.lib.validators :as validator]
             [environ.core :refer [env]]
             [compojure.core :refer :all]
             [buddy.hashers :as hs]
@@ -13,17 +13,16 @@
         uuid-record    (q/create-session q/db { :id (get user-id-record :id) })]
         (get uuid-record :uuid)))
 
-
 (defn register-user-and-set-cookie [user-body]
   (let [session (register-user user-body)]
        {:headers {"Content-Type" "Set-Cookie"},
         :cookies {"session" { :value session :path "/" }},
-        :body (str "Thanks!" (get user-body :email-address)) }))
+        :body (str "Thanks! " (get user-body :email-address)) }))
 
 (defroutes auth-routes
   ; when body is a hashmap or arraymap, return { body: % }
   (POST "/" { body :body }
-    (let [errors (v/registration body)]
+    (let [errors (validator/registration body)]
       (if (empty? errors)
         (register-user-and-set-cookie body)
         { :status 400 :body errors }))))
